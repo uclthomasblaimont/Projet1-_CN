@@ -1,3 +1,46 @@
 pour la 2.1.1.1 
 
-Dans mon script j'ai codé la fonction extract_dns_queries qui renvoit le un set des domaines résolus. Je peux voir qu'il y a plusieurs sortes de domaines ; comme par exemple les domaines de vérification d'adresse , le domaine de firefox mon naviguateur et le domaine de firefox. Il y a aussi d'autres domaines mais ce sont les liens favoris qui ont été téléchargé au lancement de firefox
+Dans mon script j'ai codé la fonction extract_dns_queries qui renvoit le un set des domaines résolus.
+Je peux voir qu'il y a plusieurs sortes de domaines ; comme par exemple les domaines de vérification d'adresse ,
+le domaine de firefox mon naviguateur et le domaine de firefox.
+Il y a aussi d'autres domaines mais ce sont les liens favoris qui ont été téléchargé au lancement de firefox
+
+pour la 2.1.1.2
+
+
+
+
+pour la 2.1.1.3 :
+
+ j'ai lancé la commande whois dropbox.com  pour interroger les noms de domains et cela m'a révelé à quelles entreprises
+ ils appartiennent
+ J'ai eu comme output que le domaine est en enregistrer chez MarkMonitor Inc.
+ Il y a plusieurs status de domaines pour protéger les noms de domaines .
+
+Dropbox utilise Amazon Web Services (awsdns) pour la gestion du DNS de ce domaine.
+Ils utilisent les services d'infrastructure d'Amazon pour une partie de leur réseau
+
+
+
+autres infos à voir si je dois les mettre dans le rapport mais :
+DNSSEC : c 'est une sécurité supplémentaire qui asssure l'authenticité de la réponse DNS ( elle n'est pas utilisé ici)
+
+
+pour la question 2.1.1.4:
+
+METTRE L'IMAGE DANS LE RAPPORT
+et expliquer les résultats
+
+
+
+
+pour la question 2.1.1.5:
+
+pour répondre à cette question on peut se fier au graphe ci dessus.
+Mais pour choisir la version de l'adresse pour l'application il faut que plusieurs facteurs entrent en jeu.
+La compatibilité la performance et la disponibilité réseau.
+D'après le graphe dropbox utilise plus les adresses IPv6 que de IPv4. S'il y a un problème avec les adresses IPv6 ,
+ils peuvent se replier sur les adresses IPv4 par défaut
+plus d'infos via le lien https://help.dropbox.com/installs/system-requirements
+
+
