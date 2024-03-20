@@ -99,6 +99,28 @@ def count_dns_query_types(file_path):
 
     return count
 
+def check_additional_records(file_path):
+    capture = pyk.FileCapture(file_path, display_filter="dns")
+    count_additional_packets = 0
+    for packet in capture:
+        if "DNS" in packet:
+
+            # si le paquet DNS a des enregistrements supplémentaires
+            if int(packet.dns.count_add_rr) > 0:
+                print(f"Paquet DNS avec enregistrements supplémentaires trouvé : {packet.number}")
+                print(f"Nombre d'enregistrements supplémentaires : {packet.dns.count_add_rr}")
+                # Affiche des informations sur chaque enregistrement supplémentaire
+                for i in range(int(packet.dns.count_add_rr)):
+                    count_additional_packets+=1
+                    print(f"Enregistrement supplémentaire {i+1}: {packet.dns.get_field_value(f'add_rr{i}_name')}")
+                print("----------")
+    return  count_additional_packets
+
+
+
+
+
+
 def plot_dns_query_types(query_type_counts):
         labels = list(query_type_counts.keys())
         values = list(query_type_counts.values())
@@ -119,11 +141,14 @@ def main():
     parser.add_argument('pcap_path', type=str, help='Path to the pcap file')
     args = parser.parse_args()
     #get_pcap(args.pcap_path)
-    #filter_packets(args.pcap_path)
-    #print(extract_dns_queries(args.pcap_path)) # pour la 2.1.1.1  pour voir les domaines résolus
+    filter_packets(args.pcap_path)
+    print(extract_dns_queries(args.pcap_path)) # pour la 2.1.1.1  pour voir les domaines résolus
     #print(extract_authoritative_servers(args.pcap_path))
     #print(count_dns_query_types(args.pcap_path)) # pour la 2.1.1.3
-    plot_dns_query_types(count_dns_query_types(args.pcap_path))
+    #plot_dns_query_types(count_dns_query_types(args.pcap_path))
+    #print(check_additional_records(args.pcap_path))
+    #print_dns_packet_details(args.pcap_path)
+
 
 
 if __name__ == "__main__":

@@ -2,8 +2,8 @@ pour la 2.1.1.1
 
 Dans mon script j'ai codé la fonction extract_dns_queries qui renvoit le un set des domaines résolus.
 Je peux voir qu'il y a plusieurs sortes de domaines ; comme par exemple les domaines de vérification d'adresse ,
-le domaine de firefox mon naviguateur et le domaine de firefox.
-Il y a aussi d'autres domaines mais ce sont les liens favoris qui ont été téléchargé au lancement de firefox
+le domaine de firefox mon naviguateur et le domaine de Firefox.
+Il y a aussi d'autres domaines mais ce sont les liens favoris qui ont été téléchargé au lancement de Firefox.
 
 pour la 2.1.1.2
 
@@ -42,5 +42,26 @@ La compatibilité la performance et la disponibilité réseau.
 D'après le graphe dropbox utilise plus les adresses IPv6 que de IPv4. S'il y a un problème avec les adresses IPv6 ,
 ils peuvent se replier sur les adresses IPv4 par défaut
 plus d'infos via le lien https://help.dropbox.com/installs/system-requirements
+
+
+
+pour la question 2.1.1.6 : Les requêtes contiennent elles des records additionnels ? Le cas échéant, à quoi servent-ils ?
+
+Oui , j'ai 561 records additionnels , on a récupéré les paquets additionnels avec une fonction.
+Il y a une activité réseau diversifiée , car on fait l'expérience sur le web (utilisations de services en ligne et des vérifications de sécurité.
+Il y a plusieurs paquets qui sont liés à la transmission d'infos DNS, mais aussi des services de sécurité
+(OCSP :"Le protocole OCSP (Online Certificate Status Protocol) est une alternative à la liste de révocation des certificats (CRL) et est utilisé pour vérifier si un certificat numérique est valide ou s'il a été révoqué." source : https://www.fortinet.com/resources/cyberglossary/ocsp).
+Pour afficher les paquets OCSP de sécurité,j'ai filtré avec la commande "ocsp".
+On peut avoir d'autres paquets pour d'autres usages.
+
+
+pour la question 2.1.1.7 : Observez-vous des comportements DNS inattendus :
+Oui j'ai plusieurs requêtes qui apparaissent plusieurs fois : par exemple "dropbox.com" , "detectportal.firefox.com" et "ocsp.digicert"
+C est un comportement de ressai en cas de non réception de réponse. Il y aussi le cas où la réponse n'arrive pas au client
+J'ai un autre comportement inattendu , les enregistrements de réponses de mes paquets ("Answer" dans le paquet) m'affichent "None"
+Il y a peut être eu un problème de connectivité DNS.
+
+
+
 
 
