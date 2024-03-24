@@ -54,14 +54,11 @@ Il y a plusieurs paquets qui sont liés à la transmission d'infos DNS, mais aus
 Pour afficher les paquets OCSP de sécurité,j'ai filtré avec la commande "ocsp".
 On peut avoir d'autres paquets pour d'autres usages.
 
-
 pour la question 2.1.1.7 : Observez-vous des comportements DNS inattendus :
 Oui j'ai plusieurs requêtes qui apparaissent plusieurs fois : par exemple "dropbox.com" , "detectportal.firefox.com" et "ocsp.digicert"
 C est un comportement de ressai en cas de non réception de réponse. Il y aussi le cas où la réponse n'arrive pas au client
 J'ai un autre comportement inattendu , les enregistrements de réponses de mes paquets ("Answer" dans le paquet) m'affichent "None"
 Il y a peut être eu un problème de connectivité DNS.
-
-
 
 pour la question 2.1.2.1 :
 
@@ -98,6 +95,39 @@ HTTPS utilise également TCP , avec une couche de sécurtié SSL/TLS
  Pour des paquets plus complexes TCP est souvent utilisé.
 
  Pour la question 2.1.3.2:
+
  voir le graphe nomdedomaine:
 
  pour la question 2.1.3.3:
+
+
+pour la question 2.1.3.4:
+En observant le trafic UDP , j'ai filtré avec la commande "udp && !dns && !quic", pour voir quel autre protocol je peux avoir. J'ai fais en sorte de ne pas filtrer
+les protocoles QUIC et DNS . Je suis tombé sur des protocles UDP classiques et des protocoles STUN.
+Certains paquets utilisent  UDP et sont envoyés de l'adress IP locale 192.168.1.42 vers une adresse multicast 239.255.255.250 .
+D'autres paquets utilisent le protocole STUN , protocol qui permet à des appareils derrière un NAT de découvrir leur adresse IP publique et le type de NAT auquel ils sont soumis.
+
+pour la question 2.1.4.1:
+
+Oui elles sont sécurisés , les protocoles comme TLS de DNS ou HTTPS : chiffrent les requêtes DNS
+on peut filtrer avec "tls.handshake.type" montre tous les paquets impliqués dans le handshake TLS.
+Ou pour vérifier la présence des certificats échangés on peut utiliser la commande "tls.handshake.certificates"
+Par exemple pour le paquet n°35 grâce au filtrage on peut voir que son paquet contient l'information :
+"Certificate, Server Key Exchange, Server Hello Done" : le serveur envoie son certificat au client pour qu'il le vérifie. Le certificat contient la clé publique du serveur .
+Le certifact status nous informe que le serveur envoie des infos sur le statut du certificat, comme par exemple OCSP qui confirme que le confirme le certificat du serveur est toujours valide.
+Il y a une étape importante c est le server key exchange , changer la clé pour le chiffrement des données
+Le "Server Hello Done " indique la fin des messages Hello du serveur , ensuite le client répondra avec ses propres messages pour continuer la négociation TLS
+
+
+
+pour la question 2.1.4.2:
+J'ai majoritairement du TLSv1.3 mais aussi du TLSv1.2
+Pour les protocoles de sécurité les paquets utilisent : SERVER HELLO et CLIENT HELLO
+
+pour la question 2.1.4.3 :
+pour voir la durée de vie nous devons analyser les validités des certificats : sur mon wireshark je peux voir le "notBefore" est à utcTime: 2021-04-14 00:00:00 (UTC)
+et le "notAfter" est à  utcTime: 2031-04-13 23:59:59 (UTC)
+Ils sont certifiés par DigiCert : "https://www.digicert.com/" (US)
+
+pour la question  2.1.4.4:
+
