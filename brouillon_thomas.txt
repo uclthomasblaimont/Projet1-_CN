@@ -1,12 +1,15 @@
 pour la 2.1.1.1 
 
-Dans mon script j'ai codé la fonction extract_dns_queries qui renvoit le un set des domaines résolus.
+Dans mon script j'ai codé la fonction extract_dns_queries qui renvoit un set des domaines résolus.
 Je peux voir qu'il y a plusieurs sortes de domaines ; comme par exemple les domaines de vérification d'adresse ,
 le domaine de firefox mon naviguateur et le domaine de Firefox.
 Il y a aussi d'autres domaines mais ce sont les liens favoris qui ont été téléchargé au lancement de Firefox.
 
-pour la 2.1.1.2
+Dans la situation wifi_connection au compte Google je vois quelques traces avec le protocole ARP.
 
+pour la 2.1.1.2
+Je lance la commande "dig NS dropbox" et je vois que les serveurs autoritatifs (ns-1162.awsdns-17.org,
+ns-564.awsdns-06.net) sont stockés chez Amazon dans la majorité des cas , car le reste c est Google.
 
 
 
@@ -92,6 +95,7 @@ correctement les page web , ce que TCP fournit.
 HTTPS utilise également TCP , avec une couche de sécurtié SSL/TLS
 
  Il y a aussi des paquets  UDP que DNS utilise :  Pour les requêtes simples qui peuvent tenir dans un seul paquet de réponse .
+ Par exemple dans la situtation de connection au compte google j'ai des paquets de requêtes de connection google
  Pour des paquets plus complexes TCP est souvent utilisé.
 
  Pour la question 2.1.3.2:
@@ -130,4 +134,9 @@ et le "notAfter" est à  utcTime: 2031-04-13 23:59:59 (UTC)
 Ils sont certifiés par DigiCert : "https://www.digicert.com/" (US)
 
 pour la question  2.1.4.4:
+
+répondre par rapport au cours
+
+pour la question 2.1.5. voir à la fin pour cette question
+
 

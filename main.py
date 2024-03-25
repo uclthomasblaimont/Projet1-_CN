@@ -254,6 +254,17 @@ def extract_cipher_suites(pcap_file):
     return cipher_suites
 
 
+def analyze_connection_trace(pcap_file):
+    capture = pyk.FileCapture(pcap_file)
+
+    for packet in capture:
+        # Analyser le flux de connexion et les protocoles utilisés
+        if 'TLS' in packet or 'SSL' in packet:
+            print(f"TLS/SSL Packet: {packet}")
+        if 'HTTP' in packet:
+            print(f"HTTP Packet: {packet.http.request_method} {packet.http.host} {packet.http.request_uri}")
+        # Et ainsi de suite pour d'autres analyses...
+
 
 def generate_domain_graph(pcap_path):
     capture = pyk.FileCapture(pcap_path, display_filter="dns")
@@ -343,6 +354,8 @@ def main():
     #(analyze_tls_versions(args.pcap_path)
     #analyze_tls_certificates(args.pcap_path)
     #print(extract_cipher_suites(args.pcap_path))
-    plot_tls_usage(extract_cipher_suites(args.pcap_path))
+    #plot_tls_usage(extract_cipher_suites(args.pcap_path))
+    analyze_connection_trace(args.pcap_path)
+
 if __name__ == "__main__":
     main()
