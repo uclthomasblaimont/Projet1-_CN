@@ -185,7 +185,7 @@ def analyze_tls_versions(pcap_file):
 
         try:
 
-            # PyShark versions may vary in attribute names, trying common ones
+
 
             if hasattr(packet.tls, 'handshake_version'):
 
@@ -267,6 +267,7 @@ def analyze_connection_trace(pcap_file):
 
 
 def generate_domain_graph(pcap_path):
+    #doit filtrer les domaines qui sont en lien avec Dropbox
     capture = pyk.FileCapture(pcap_path, display_filter="dns")
 
     # Dictionnaire pour stocker les noms de domaine et les adresses IP associées
