@@ -266,6 +266,19 @@ def analyze_connection_trace(pcap_file):
         # Et ainsi de suite pour d'autres analyses...
 
 
+def dropbox_checker(input_dict):
+    # Créer un nouveau dictionnaire pour stocker les entrées filtrées
+    filtered_dict = defaultdict(dict)
+    # Itérer sur chaque paire clé-valeur de l'input_dict
+    for key, value in input_dict.items():
+        # Vérifier si "dropbox" est dans la clé
+        if "dropbox" in key:
+            # Si oui, ajouter la clé et la valeur au filtered_dict
+            filtered_dict[key] = value
+
+    return filtered_dict
+
+
 def generate_domain_graph(pcap_path):
     #doit filtrer les domaines qui sont en lien avec Dropbox
     capture = pyk.FileCapture(pcap_path, display_filter="dns")
@@ -289,10 +302,14 @@ def generate_domain_graph(pcap_path):
                         domain_addresses[answer].add(packet.ip.dst)
         except AttributeError:
             continue
+    #print(domain_addresses)
+    other_domaines = dropbox_checker(domain_addresses)
 
     # Préparation des données pour le graphe
-    domains = list(domain_addresses.keys())
-    counts = [len(addresses) for addresses in domain_addresses.values()]
+    domains = list(other_domaines.keys())
+    counts = [len(addresses) for addresses in other_domaines.values()]
+    print(domains)
+    print(counts)
 
     # Générer le graphe
     plt.figure(figsize=(10, 8))
@@ -351,12 +368,12 @@ def main():
     # print(check_additional_records(args.pcap_path))
     # analyse_dns_requests(args.pcap_path)
     # get_domain_names_from_pcap(args.pcap_path)
-    # generate_domain_graph(args.pcap_path)
+    generate_domain_graph(args.pcap_path)
     #(analyze_tls_versions(args.pcap_path)
     #analyze_tls_certificates(args.pcap_path)
     #print(extract_cipher_suites(args.pcap_path))
     #plot_tls_usage(extract_cipher_suites(args.pcap_path))
-    analyze_connection_trace(args.pcap_path)
+    #analyze_connection_trace(args.pcap_path)
 
 if __name__ == "__main__":
     main()
