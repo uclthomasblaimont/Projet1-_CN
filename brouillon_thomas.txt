@@ -140,3 +140,20 @@ répondre par rapport au cours
 pour la question 2.1.5. voir à la fin pour cette question
 
 
+
+
+
+(ip.addr == 192.168.1.61 || ip.addr == 192.168.1.56) && ip.addr == 162.159.135.234)
+
+
+
+quand nous nous connectons avec un smartphone sur dropbox ,
+nous pouvons voir dans le paquet "wifi_application.pcapng" que l'adresse ip du téléphone est présente
+en même temps que celle du pc. Avec le téléphone, nous avons upload une image .
+
+Nous avons remarqué qu'il y a eu le même déroulement que pour le pc. C est à dire que l'adresse ip du téléphone a envoyé
+
+Au début nous avons le protocole MDNS : il y a des demandes de requêtes pour l'adresse IPv4 et IPv6 du téléphone.
+une requête aux serveurs de dropbox pour télécharger l'image.
+Ensuite les serveurs dropbox ont avertis les différents appareils connectés qu'il y avait une nouveau fichier sur le drive.
+Il n'y a pas vraiment d'impacte sur le réseau mise à part qu'il y a eu une augmentation de résolution de domaine.

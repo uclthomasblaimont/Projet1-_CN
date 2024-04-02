@@ -361,14 +361,14 @@ def main():
     args = parser.parse_args()
     # print(get_pcap(args.pcap_path))
     # filter_packets(args.pcap_path)
-    # (extract_dns_queries(args.pcap_path)) # pour la 2.1.1.1  pour voir les domaines résolus
+    #print(extract_dns_queries(args.pcap_path)) # pour la 2.1.1.1  pour voir les domaines résolus
     # print(extract_authoritative_servers(args.pcap_path))
     # print(count_dns_query_types(args.pcap_path)) # pour la 2.1.1.3
     # plot_dns_query_types(count_dns_query_types(args.pcap_path))
     # print(check_additional_records(args.pcap_path))
     # analyse_dns_requests(args.pcap_path)
     # get_domain_names_from_pcap(args.pcap_path)
-    generate_domain_graph(args.pcap_path)
+    #generate_domain_graph(args.pcap_path)
     #(analyze_tls_versions(args.pcap_path)
     #analyze_tls_certificates(args.pcap_path)
     #print(extract_cipher_suites(args.pcap_path))
